@@ -13,6 +13,7 @@ public class Users {
 		this.psw = psw;
 		this.leerkracht = leerkracht;
 	}
+
 	public String getuId() {
 		return uId;
 	}
@@ -20,6 +21,7 @@ public class Users {
 	public void setuId(String uId) {
 		this.uId = uId;
 	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -27,6 +29,7 @@ public class Users {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public String getPsw() {
 		return psw;
 	}
@@ -34,6 +37,7 @@ public class Users {
 	public void setPsw(String psw) {
 		this.psw = psw;
 	}
+
 	public boolean isLeerkracht() {
 		return leerkracht;
 	}

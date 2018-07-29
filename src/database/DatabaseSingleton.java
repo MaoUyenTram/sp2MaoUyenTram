@@ -23,6 +23,7 @@ public class DatabaseSingleton {
 		return ref;
 	}
 
+	@Override
 	public Object clone() throws CloneNotSupportedException {
 		throw new CloneNotSupportedException();
 
@@ -32,9 +33,7 @@ public class DatabaseSingleton {
 		if (connection == null || connection.isClosed()) {
 
 			try {
-				connection = DriverManager.getConnection(
-						"jdbc:mysql://iwt5.ehb.be/...",
-						DatabaseProperties.USERNAME,
+				connection = DriverManager.getConnection("jdbc:mysql://iwt5.ehb.be/...", DatabaseProperties.USERNAME,
 						DatabaseProperties.PASSWORD);
 
 			} catch (SQLException ex) {
@@ -43,9 +42,9 @@ public class DatabaseSingleton {
 				System.out.println("VendorError: " + ex.getErrorCode());
 			}
 		}
-		
+
 		connection.setAutoCommit(autoCommit);
-		
+
 		return connection;
 	}
 

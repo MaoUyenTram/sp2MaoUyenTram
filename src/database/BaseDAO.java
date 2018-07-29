@@ -6,9 +6,8 @@ import java.sql.SQLException;
 public class BaseDAO {
 
 	private static Connection con;
-	
-	public BaseDAO()
-	{
+
+	public BaseDAO() {
 		try {
 			con = DatabaseSingleton.getDatabaseSingleton().getConnection(true);
 		} catch (SQLException e) {
@@ -22,10 +21,7 @@ public class BaseDAO {
 	}
 
 	public void setCon(Connection con) {
-		this.con = con;
+		BaseDAO.con = con;
 	}
-	
-	
-	
-	
+
 }
