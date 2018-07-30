@@ -8,15 +8,16 @@ public class BaseDAO {
 	private static Connection con;
 
 	public BaseDAO() {
+		
+	}
+
+	public static Connection getCon() {
 		try {
 			con = DatabaseSingleton.getDatabaseSingleton().getConnection(true);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-
-	public static Connection getCon() {
 		return con;
 	}
 

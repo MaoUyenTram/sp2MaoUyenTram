@@ -30,4 +30,9 @@ public class Main extends Application {
 		launch(args);
 	}
 
+	public static void mainview() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

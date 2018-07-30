@@ -7,6 +7,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import model.Hash;
+import model.Main;
 import model.Users;
 
 public class LoginController {
@@ -25,6 +27,7 @@ public class LoginController {
 			user.setPsw(pf_password.getText());
 			if (LoginDAO.loginUser(user)) {
 				alert("Success !", "Je bent succesvol ingelogd !", AlertType.INFORMATION);
+				Main.mainview();
 
 			} else {
 				alert("Username", "Login onmogelijk. ", AlertType.WARNING);

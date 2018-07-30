@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import model.Hash;
 import model.Users;
 
 public class LoginDAO extends BaseDAO {
@@ -17,8 +19,9 @@ public class LoginDAO extends BaseDAO {
 				throw new IllegalStateException("Connection onverwacht beeindigd");
 			}
 			st = getCon().createStatement();
+			String query = "select * from Users where email = '" + u.getEmail() + "' and psw = '" + Hash.getHash(u.getPsw().getBytes())+ "'";
 			ResultSet rs = st
-					.executeQuery("select * from Users where email = " + u.getEmail() + " and psw = " + u.getPsw());
+					.executeQuery(query);
 
 			while (rs.next()) {
 				return true;

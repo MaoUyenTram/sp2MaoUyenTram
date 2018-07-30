@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+
 public class DatabaseSingleton {
 	private static DatabaseSingleton ref;
 
@@ -33,7 +34,7 @@ public class DatabaseSingleton {
 		if (connection == null || connection.isClosed()) {
 
 			try {
-				connection = DriverManager.getConnection("jdbc:mysql://iwt5.ehb.be/...", DatabaseProperties.USERNAME,
+				connection = DriverManager.getConnection("jdbc:mysql://dt5.ehb.be/"+DatabaseProperties.USERNAME, DatabaseProperties.USERNAME,
 						DatabaseProperties.PASSWORD);
 
 			} catch (SQLException ex) {
