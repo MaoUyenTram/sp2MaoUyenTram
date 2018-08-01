@@ -1,5 +1,7 @@
 package model;
 
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -30,8 +32,13 @@ public class Main extends Application {
 		launch(args);
 	}
 
-	public static void mainview() {
-		// TODO Auto-generated method stub
+	public static void mainview() throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(Main.class.getResource("/view/main.fxml"));
+		Parent root = loader.load();
+		Scene scene = new Scene(root);
+		primaryStage.setScene(scene);
+		primaryStage.show();
 		
 	}
 

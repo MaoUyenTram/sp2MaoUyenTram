@@ -19,31 +19,30 @@ public class LoginController {
 	TextField tf_user;
 
 	@FXML
-	void goHome(ActionEvent event) {
+	void goHome(ActionEvent event) throws InterruptedException{
 
 		try {
 			user = new Users();
 			user.setEmail(tf_user.getText());
 			user.setPsw(pf_password.getText());
 			if (LoginDAO.loginUser(user)) {
-				alert("Success !", "Je bent succesvol ingelogd !", AlertType.INFORMATION);
 				Main.mainview();
 
 			} else {
-				alert("Username", "Login onmogelijk. ", AlertType.WARNING);
+				alert("incorrect email/password. ", "Please check your email/password", AlertType.WARNING);
 			}
 		} catch (NullPointerException e) {
-			alert("Error", "Foutief gebruikersnaam / paswoord.", AlertType.WARNING);
 			user.setEmail("");
 			user.setPsw("");
 		} catch (Exception e) {
 			alert("FATAL ERROR", "Unknown error, please contact your system administrator and report the bug.",
 					AlertType.WARNING);
+			
 			e.printStackTrace();
 		}
 	}
 
-	public static void alert(String title, String message, AlertType al) {
+	public static void alert(String title, String message, AlertType al) throws InterruptedException {
 		Alert alert = new Alert(al);
 		alert.setHeaderText(null);
 		alert.setTitle(title);
