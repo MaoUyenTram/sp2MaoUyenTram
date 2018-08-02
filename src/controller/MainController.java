@@ -9,6 +9,7 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -16,6 +17,7 @@ import javafx.scene.control.Alert.AlertType;
 import model.Questions;
 import model.Users;
 import model.Answers;
+import model.Dataholder;
 import model.Main;
 import model.QAnswers;
 
@@ -23,7 +25,7 @@ public class MainController {
 	ArrayList<Questions> temp1 = QuestionDAO.getAll();
 	ArrayList<Answers> temp2 = null;
 	Questions selquestion = null;
-	
+
 	@FXML
 	private ComboBox<String> questions;
 	@FXML
@@ -32,21 +34,35 @@ public class MainController {
 	Label label;
 	@FXML
 	void seeChart() {
-		
+		ArrayList<Dataholder> q = QAnswerDAO.getStats(selquestion.getqId());
+		for(int i = 0;i <q.size();i++){
+			for (int a = 0;a<temp2.size();a++){
+				if(temp2.get(a).getaId() == Integer.parseInt(q.get(i).getName())){
+					//pieChartData.add(new PieChart.Data(temp2.get(a).getAnswer(),(double)q.get(i).getCount()));
+					q.get(i).setName(temp2.get(a).getAnswer());
+					a = temp2.size();
+				}
+			}
+		}
+		Main.generatechart(q, selquestion.getMethod());
 	}
-	
+
 	@FXML
 	void submit() throws InterruptedException{ 
 		QAnswers a = new QAnswers();
 		a.setqId(selquestion.getqId());
 		a.setuId(Main.user.getuId());
-		for(int i = 0; i <temp2.size();i++){
-			if(temp2.get(i).getAnswer().toString().equals(answers.getSelectionModel().getSelectedItem().toString())){
-				a.setaId(temp2.get(i).getaId());
+		if (answers.getSelectionModel().getSelectedItem() == null){
+			alert("error ", "Gelieve een antwoord te selecteren", AlertType.WARNING);
+		} else{
+			for(int i = 0; i <temp2.size();i++){
+				if(temp2.get(i).getAnswer().toString().equals(answers.getSelectionModel().getSelectedItem().toString())){
+					a.setaId(temp2.get(i).getaId());
+				}
 			}
+			QAnswerDAO.submitAnswer(a);
+			alert("dank u ", "Bedankt voor je tijd", AlertType.WARNING);
 		}
-		QAnswerDAO.submitAnswer(a);
-		alert("dank u ", "Bedankt voor je tijd", AlertType.WARNING);
 	}
 	@FXML
 	private void initialize() {
@@ -70,7 +86,7 @@ public class MainController {
 			label.setText("Statistic Method:"+ selquestion.getMethod());
 		});
 	}
-	
+
 	public static void alert(String title, String message, AlertType al) throws InterruptedException {
 		Alert alert = new Alert(al);
 		alert.setHeaderText(null);
@@ -78,23 +94,23 @@ public class MainController {
 		alert.setContentText(message);
 		alert.show();
 		Thread newThread = new Thread(new Runnable() {
-		    @Override
-		        public void run() {
-		            try {
-		                Thread.sleep(1000);
-		            } catch (InterruptedException ex) {
-		                Thread.currentThread().interrupt();
-		            }
+			@Override
+			public void run() {
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException ex) {
+					Thread.currentThread().interrupt();
+				}
 
-		            Platform.runLater(new Runnable() {
-		                @Override
-		                public void run() {
-		                    alert.close();
-		                }
-		                });
-		            }
-		    });
-		    newThread.start();
+				Platform.runLater(new Runnable() {
+					@Override
+					public void run() {
+						alert.close();
+					}
+				});
+			}
+		});
+		newThread.start();
 
 	}
 

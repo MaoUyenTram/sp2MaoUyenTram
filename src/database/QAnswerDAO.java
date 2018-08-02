@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import model.Answers;
+import model.Dataholder;
 import model.Hash;
 import model.Main;
 import model.QAnswers;
@@ -59,6 +60,7 @@ public class QAnswerDAO extends BaseDAO {
 		}
 	}
 
+	@SuppressWarnings("resource")
 	public static void submitAnswer(QAnswers a){
 		PreparedStatement st = null;
 		ResultSet rs = null; 
@@ -90,8 +92,8 @@ public class QAnswerDAO extends BaseDAO {
 				st.executeUpdate();
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
+			throw new RuntimeException("error.unexpected");
 		} finally{
 			try {
 				if (st != null)
@@ -104,5 +106,45 @@ public class QAnswerDAO extends BaseDAO {
 			}
 		}
 
+	}
+
+	public static ArrayList<Dataholder> getStats(int i) {
+		ArrayList<Dataholder> list = null;
+		PreparedStatement pst = null;
+		ResultSet rs = null;
+
+		String sql = "SELECT aId,count(uId) FROM QAnswers where qId =? group by 1";
+		try {
+			Connection c = getCon();
+			if (c == null || c.isClosed()) {
+				// afhandelen zoals je zelf wilt
+				throw new IllegalStateException("Connection onverwacht beeindigd");
+			}
+			pst = getCon().prepareStatement(sql);
+			pst.setInt(1, i);
+			rs =pst.executeQuery();
+			list = new ArrayList<Dataholder>();
+
+			while (rs.next()) {
+				Dataholder q = new Dataholder(rs.getString(1),rs.getInt(2));
+				list.add(q);
+				
+			}
+
+			return list;
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			try {
+				if (pst != null)
+					pst.close();
+				if (rs != null)
+					rs.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+				throw new RuntimeException("error.unexpected");
+			}
+		}
 	}
 }
