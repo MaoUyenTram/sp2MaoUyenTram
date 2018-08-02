@@ -7,12 +7,14 @@ import java.sql.Statement;
 import java.sql.PreparedStatement;
 
 import model.Hash;
+import model.Main;
 import model.Users;
 
 public class LoginDAO extends BaseDAO {
 
+
 	public static boolean loginUser(Users u) {
-		final Users user;
+		
 		PreparedStatement st = null;
 		ResultSet rs = null; 
 		try {
@@ -29,7 +31,7 @@ public class LoginDAO extends BaseDAO {
 			rs = st.executeQuery();
 
 			while (rs.next()) {
-				 user = new Users(rs.getString(1),rs.getString(2),rs.getString(3),rs.getBoolean(4));
+				 Main.user = new Users(rs.getString(1),rs.getString(2),rs.getString(3),rs.getBoolean(4));
 				
 				return true;
 			}

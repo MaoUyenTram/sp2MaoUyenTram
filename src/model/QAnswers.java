@@ -1,6 +1,10 @@
 package model;
 
-public class QAnswers {
+public class QAnswers  implements java.io.Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6664807592102713017L;
 	private int qId;
 	private int aId;
 	private String uId;
@@ -18,6 +22,9 @@ public class QAnswers {
 		this.qId = qId;
 		this.aId = aId;
 		this.uId = uId;
+	}
+	public QAnswers() {
+		// TODO Auto-generated constructor stub
 	}
 	public void setaId(int aId) {
 		this.aId = aId;

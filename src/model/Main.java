@@ -8,9 +8,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Main extends Application {
+public class Main extends Application  implements java.io.Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4059043301321459891L;
 	private static Stage primaryStage;
 	public static Stage addDialogStage;
+	public static Users user;
 	
 	public Main() {
 
@@ -18,7 +23,7 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		this.primaryStage=primaryStage;
+		Main.primaryStage=primaryStage;
 		Parent root = FXMLLoader.load(getClass().getResource("/view/login.fxml"));
 		Scene scene = new Scene(root);
 		scene.setRoot(root);

@@ -30,6 +30,6 @@
             <Button alignment="CENTER" onAction="#submit" mnemonicParsing="false" prefHeight="25.0" prefWidth="336.0" text="submit answer" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-      <Label alignment="CENTER" layoutX="283.0" layoutY="444.0" prefHeight="39.0" prefWidth="234.0" text="Statistic method::" />
+      <Label alignment="CENTER" fx:id="label" layoutX="283.0" layoutY="444.0" prefHeight="39.0" prefWidth="234.0" text="Statistic method::" />
    </children>
                      </AnchorPane>

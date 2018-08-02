@@ -1,6 +1,11 @@
 package model;
 
-public class Answers {
+public class Answers  implements java.io.Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7036932858459406951L;
+
 	public Answers(int aId, int qId, String answer) {
 		super();
 		this.aId = aId;

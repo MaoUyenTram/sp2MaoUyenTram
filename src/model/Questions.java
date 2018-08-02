@@ -1,6 +1,10 @@
 package model;
 
-public class Questions {
+public class Questions  implements java.io.Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7025124408448443600L;
 	private int qId;
 	private String question;
 	private String method;
@@ -12,6 +16,12 @@ public class Questions {
 		this.question = question;
 		this.method = method;
 		Teacher = teacher;
+	}
+	public Questions(Questions q) {
+		this.qId = q.qId;
+		this.question = q.question;
+		this.method = q.method;
+		Teacher = q.Teacher;
 	}
 	public int getqId() {
 		return qId;

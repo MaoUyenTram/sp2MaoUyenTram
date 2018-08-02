@@ -1,6 +1,7 @@
 package controller;
 
 import database.LoginDAO;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -47,7 +48,26 @@ public class LoginController {
 		alert.setHeaderText(null);
 		alert.setTitle(title);
 		alert.setContentText(message);
-		alert.showAndWait();
+		alert.show();
+		// src https://stackoverflow.com/questions/30755370/javafx-close-alert-box-or-any-dialog-box-programatically
+		Thread newThread = new Thread(new Runnable() {
+		    @Override
+		        public void run() {
+		            try {
+		                Thread.sleep(1000);
+		            } catch (InterruptedException ex) {
+		                Thread.currentThread().interrupt();
+		            }
+
+		            Platform.runLater(new Runnable() {
+		                @Override
+		                public void run() {
+		                    alert.close();
+		                }
+		                });
+		            }
+		    });
+		    newThread.start();
 
 	}
 }

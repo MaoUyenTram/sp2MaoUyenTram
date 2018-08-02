@@ -1,6 +1,9 @@
 package model;
 
-public class Users {
+
+public class Users implements java.io.Serializable {
+
+	private static final long serialVersionUID = -4174695819056739055L;
 	private String uId;
 	private String email;
 	private String psw;
