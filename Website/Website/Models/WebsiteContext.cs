@@ -22,9 +22,11 @@ namespace Website.Models
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<QAnswers>().HasKey(x => new { x.QId, x.AId, x.UId });
-            //modelBuilder.Entity<Users>().HasKey(u => u.UId);
-            //modelBuilder.Entity<Answers>().HasRequired(x => x.AId).WithMany().WillCascadeOnDelete(false);
-            //modelBuilder.Entity<Questions>().HasRequired(x => x.QId).WithMany().WillCascadeOnDelete(false);
+            // src = https://stackoverflow.com/questions/51802370/the-navigation-property-uid-is-not-a-declared-property-on-type-users
+            modelBuilder.Entity<Answers>().HasRequired(a => a.Questions).WithMany().WillCascadeOnDelete(false);
+            modelBuilder.Entity<QAnswers>().HasRequired(a => a.Questions).WithMany().WillCascadeOnDelete(false);
+            modelBuilder.Entity<QAnswers>().HasRequired(a => a.Answers).WithMany().WillCascadeOnDelete(false);
+            modelBuilder.Entity<QAnswers>().HasRequired(a => a.Users).WithMany().WillCascadeOnDelete(false);
         }
     }
 }

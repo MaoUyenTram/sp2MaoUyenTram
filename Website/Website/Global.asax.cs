@@ -9,6 +9,10 @@ using System.Web.SessionState;
 using System.Web.Http;
 using System.Data.Entity;
 using Website.Models;
+using Website.App_Start;
+using System.Web.Helpers;
+using System.Security.Claims;
+using System.Web.Optimization;
 
 namespace Website
 {
@@ -21,6 +25,8 @@ namespace Website
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             Database.SetInitializer(new DropCreateDatabaseAlways<WebsiteContext>());
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
+            AntiForgeryConfig.UniqueClaimTypeIdentifier = ClaimTypes.Name;
         }
     }
 }

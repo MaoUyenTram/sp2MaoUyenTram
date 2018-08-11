@@ -16,7 +16,9 @@ namespace Website.Models
         public String Method { get; set; }
         public String Teacher { get; set; }
 
-
+        public Questions()
+        {
+        }
 
         public Questions(int qId, string question, string method, string teacher)
         {
@@ -24,6 +26,21 @@ namespace Website.Models
             this.Question = question;
             this.Method = method;
             this.Teacher = teacher;
+        }
+
+        public override string ToString()
+        {
+            return base.ToString();
+        }
+
+        public override bool Equals(object obj)
+        {
+            return base.Equals(obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }

@@ -22,7 +22,9 @@ namespace Website.Models
         [ForeignKey("UId"), Column(Order =0)]
         public Users Users { get; set; }
 
-
+        public QAnswers()
+        {
+        }
 
         public QAnswers(int qId, int aId, string uId)
         {

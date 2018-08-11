@@ -16,7 +16,9 @@ namespace Website.Models
         public String Psw { get; set; }
         public Boolean Teacher { get; set;}
 
-
+        public Users()
+        {
+        }
 
         public Users(string UId, string Email, string Psw, bool Teacher)
         {
@@ -26,5 +28,19 @@ namespace Website.Models
             this.Teacher = Teacher;
         }
 
+        public override string ToString()
+        {
+            return base.ToString();
+        }
+
+        public override bool Equals(object obj)
+        {
+            return base.Equals(obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }
