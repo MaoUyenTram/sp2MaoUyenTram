@@ -4,116 +4,26 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
 using Website.Models;
+using Microsoft.Owin.Security;
+using Microsoft.AspNet.Identity;
+using System.Text;
+using System.Security.Cryptography;
 
 namespace Website.Controllers
 {
     public class UsersController : Controller
     {
+        static Users user;
+        IAuthenticationManager Authentication
+        {
+            get { return HttpContext.GetOwinContext().Authentication; }
+        }
         private WebsiteContext db = new WebsiteContext();
 
-        // GET: Users
-        public ActionResult Index()
-        {
-            return View(db.Users.ToList());
-        }
-
-        // GET: Users/Details/5
-        public ActionResult Details(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Users users = db.Users.Find(id);
-            if (users == null)
-            {
-                return HttpNotFound();
-            }
-            return View(users);
-        }
-
-        // GET: Users/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Users/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UId,Email,Psw,Teacher")] Users users)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Users.Add(users);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(users);
-        }
-
-        // GET: Users/Edit/5
-        public ActionResult Edit(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Users users = db.Users.Find(id);
-            if (users == null)
-            {
-                return HttpNotFound();
-            }
-            return View(users);
-        }
-
-        // POST: Users/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UId,Email,Psw,Teacher")] Users users)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(users).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(users);
-        }
-
-        // GET: Users/Delete/5
-        public ActionResult Delete(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Users users = db.Users.Find(id);
-            if (users == null)
-            {
-                return HttpNotFound();
-            }
-            return View(users);
-        }
-
-        // POST: Users/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
-        {
-            Users users = db.Users.Find(id);
-            db.Users.Remove(users);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
 
         protected override void Dispose(bool disposing)
         {
@@ -123,5 +33,65 @@ namespace Website.Controllers
             }
             base.Dispose(disposing);
         }
+
+        
+        // GET: Login
+        [AllowAnonymous]
+        [HttpGet]
+        public ActionResult Login()
+        {
+            return View();
+        }
+        // src = https://stackoverflow.com/questions/11367727/how-can-i-sha512-a-string-in-c
+        public String GetHashCode(String text)
+        {
+            byte[] hash;
+            var data = Encoding.UTF8.GetBytes(text);
+            using (SHA512 shaM = new SHA512Managed())
+            {
+                hash = shaM.ComputeHash(data);
+            }
+            text = BitConverter.ToString(hash).Replace("-", "");
+            
+            return text.ToLower();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(Users g, string returnUrl)
+        {
+            if (ModelState.IsValid)
+            {
+                g.Psw = GetHashCode(g.Psw);
+                if (db.Users.Where(m => m.UId.Equals(g.UId) && m.Psw.Equals(g.Psw) && true == m.Teacher).Count() > 0)
+                {
+                    var identity = new ClaimsIdentity(new[] {
+                            new Claim(ClaimTypes.Name, g.UId),
+                        },
+                        DefaultAuthenticationTypes.ApplicationCookie,
+                        ClaimTypes.Name, ClaimTypes.Role);
+
+                    Authentication.SignIn(new AuthenticationProperties
+                    {
+                        IsPersistent = true
+                    }, identity);
+
+                    return RedirectToAction("Index", "Questions");
+                }
+            }
+
+
+
+            return View("Login");
+        }
+
+        public ActionResult Logout()
+        {
+            Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            return RedirectToAction("Login");
+        }
+
     }
 }
+

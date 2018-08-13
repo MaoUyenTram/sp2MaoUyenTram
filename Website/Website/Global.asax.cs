@@ -24,7 +24,7 @@ namespace Website
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            Database.SetInitializer(new DropCreateDatabaseAlways<WebsiteContext>());
+            //Database.SetInitializer(new DropCreateDatabaseAlways<WebsiteContext>());
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AntiForgeryConfig.UniqueClaimTypeIdentifier = ClaimTypes.Name;
         }

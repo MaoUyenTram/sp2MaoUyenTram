@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 
 namespace Website.Models
@@ -33,14 +36,31 @@ namespace Website.Models
             return base.ToString();
         }
 
-        public override bool Equals(object obj)
+        
+
+        public IEnumerator GetEnumerator()
         {
-            return base.Equals(obj);
+            throw new NotImplementedException();
         }
 
         public override int GetHashCode()
         {
-            return base.GetHashCode();
+            var hashCode = -718741358;
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(UId);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Email);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Psw);
+            hashCode = hashCode * -1521134295 + Teacher.GetHashCode();
+            return hashCode;
+        }
+
+        public override bool Equals(object obj)
+        {
+            var users = obj as Users;
+            return users != null &&
+                   UId == users.UId &&
+                   Email == users.Email &&
+                   Psw == users.Psw &&
+                   Teacher == users.Teacher;
         }
     }
 }
