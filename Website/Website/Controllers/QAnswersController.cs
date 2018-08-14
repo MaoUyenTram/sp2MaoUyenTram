@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Website.Models;
+using static Website.Global;
 
 namespace Website.Controllers
 {
@@ -15,6 +16,7 @@ namespace Website.Controllers
         private WebsiteContext db = new WebsiteContext();
 
         // GET: QAnswers
+        [NoDirectAccess]
         public ActionResult Index()
         {
             var qAnswers = db.QAnswers.Include(q => q.Answers).Include(q => q.Questions).Include(q => q.Users);
@@ -22,6 +24,7 @@ namespace Website.Controllers
         }
 
         // GET: QAnswers/Details/5
+        [NoDirectAccess]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,6 +40,7 @@ namespace Website.Controllers
         }
 
         // GET: QAnswers/Create
+        [NoDirectAccess]
         public ActionResult Create()
         {
             ViewBag.AId = new SelectList(db.Answers, "AId", "Answer");
@@ -48,6 +52,7 @@ namespace Website.Controllers
         // POST: QAnswers/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [NoDirectAccess]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "QId,AId,UId")] QAnswers qAnswers)
@@ -66,6 +71,7 @@ namespace Website.Controllers
         }
 
         // GET: QAnswers/Edit/5
+        [NoDirectAccess]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -86,6 +92,7 @@ namespace Website.Controllers
         // POST: QAnswers/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [NoDirectAccess]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "QId,AId,UId")] QAnswers qAnswers)
@@ -103,6 +110,7 @@ namespace Website.Controllers
         }
 
         // GET: QAnswers/Delete/5
+        [NoDirectAccess]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -118,6 +126,7 @@ namespace Website.Controllers
         }
 
         // POST: QAnswers/Delete/5
+        [NoDirectAccess]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

@@ -18,9 +18,6 @@
         <th>
             @Html.DisplayNameFor(model => model.Method)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Teacher)
-        </th>
         <th></th>
     </tr>
 
@@ -33,9 +30,6 @@
             @Html.DisplayFor(modelItem => item.Method)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Teacher)
-        </td>
-        <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.QId }) |
             @Html.ActionLink("Details", "Details", new { id=item.QId }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.QId })
@@ -44,3 +38,4 @@
 }
 
 </table>
+

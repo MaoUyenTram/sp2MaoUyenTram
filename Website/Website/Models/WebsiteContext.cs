@@ -9,7 +9,7 @@ namespace Website.Models
 {
     public class WebsiteContext : DbContext
     {
-        public WebsiteContext() : base("Database1")
+        public WebsiteContext() : base("database1")
         {
 
         }

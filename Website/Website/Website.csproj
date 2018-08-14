@@ -216,25 +216,14 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\Users\Create.cshtml" />
-    <Content Include="Views\Users\Delete.cshtml" />
-    <Content Include="Views\Users\Details.cshtml" />
-    <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Login.cshtml" />
     <Content Include="Views\Questions\Create.cshtml" />
     <Content Include="Views\Questions\Delete.cshtml" />
-    <Content Include="Views\Questions\Details.cshtml" />
     <Content Include="Views\Questions\Edit.cshtml" />
     <Content Include="Views\Questions\Index.cshtml" />
-    <Content Include="Views\Answers\Create.cshtml" />
     <Content Include="Views\Answers\Delete.cshtml" />
     <Content Include="Views\Answers\Details.cshtml" />
     <Content Include="Views\Answers\Edit.cshtml" />
-    <Content Include="Views\Answers\Index.cshtml" />
-    <Content Include="Views\QAnswers\Create.cshtml" />
-    <Content Include="Views\QAnswers\Delete.cshtml" />
-    <Content Include="Views\QAnswers\Details.cshtml" />
-    <Content Include="Views\QAnswers\Edit.cshtml" />
     <Content Include="Views\QAnswers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -258,6 +247,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Answers.cs" />
+    <Compile Include="Models\BigView.cs" />
     <Compile Include="Models\QAnswers.cs" />
     <Compile Include="Models\Questions.cs" />
     <Compile Include="Models\Users.cs" />
@@ -272,6 +262,8 @@
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
     <Content Include="Views\Shared\LoginPartial.cshtml" />
+    <Content Include="Views\Answers\Index.cshtml" />
+    <Content Include="Views\Answers\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

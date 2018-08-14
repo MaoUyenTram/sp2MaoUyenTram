@@ -12,12 +12,12 @@ using Microsoft.Owin.Security;
 using Microsoft.AspNet.Identity;
 using System.Text;
 using System.Security.Cryptography;
+using static Website.Global;
 
 namespace Website.Controllers
 {
     public class UsersController : Controller
     {
-        static Users user;
         IAuthenticationManager Authentication
         {
             get { return HttpContext.GetOwinContext().Authentication; }
@@ -34,7 +34,7 @@ namespace Website.Controllers
             base.Dispose(disposing);
         }
 
-        
+
         // GET: Login
         [AllowAnonymous]
         [HttpGet]
@@ -66,6 +66,7 @@ namespace Website.Controllers
                 g.Psw = GetHashCode(g.Psw);
                 if (db.Users.Where(m => m.UId.Equals(g.UId) && m.Psw.Equals(g.Psw) && true == m.Teacher).Count() > 0)
                 {
+                    //HttpContext.Session.Add("uid",g.UId);
                     var identity = new ClaimsIdentity(new[] {
                             new Claim(ClaimTypes.Name, g.UId),
                         },

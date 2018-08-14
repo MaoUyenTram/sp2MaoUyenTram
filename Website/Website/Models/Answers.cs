@@ -19,7 +19,7 @@ namespace Website.Models
         public virtual Questions Questions { get; set; }
         public String Answer { get; set; }
 
-
+        public Answers() { }
 
         public Answers(int aId, int qId, string answer)
         {

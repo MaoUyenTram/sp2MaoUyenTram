@@ -1,8 +1,3 @@
-D:\Downloads\sp2MaoUyenTram\Website\Website\bin\EntityFramework.xml
-D:\Downloads\sp2MaoUyenTram\Website\Website\bin\MySql.Data.dll
-D:\Downloads\sp2MaoUyenTram\Website\Website\bin\MySql.Data.xml
-D:\Downloads\sp2MaoUyenTram\Website\Website\bin\System.Net.Http.Formatting.xml
-D:\Downloads\sp2MaoUyenTram\Website\Website\bin\System.Web.WebPages.Deployment.xml
 D:\Downloads\sp2MaoUyenTram\Website\Website\bin\Website.dll.config
 D:\Downloads\sp2MaoUyenTram\Website\Website\bin\Website.dll
 D:\Downloads\sp2MaoUyenTram\Website\Website\bin\Website.pdb
@@ -65,6 +60,7 @@ D:\Downloads\sp2MaoUyenTram\Website\Website\bin\Microsoft.Owin.Security.Cookies.
 D:\Downloads\sp2MaoUyenTram\Website\Website\bin\Microsoft.Owin.Security.dll
 D:\Downloads\sp2MaoUyenTram\Website\Website\bin\Microsoft.Owin.Security.OAuth.dll
 D:\Downloads\sp2MaoUyenTram\Website\Website\bin\Microsoft.Web.Infrastructure.dll
+D:\Downloads\sp2MaoUyenTram\Website\Website\bin\MySql.Data.dll
 D:\Downloads\sp2MaoUyenTram\Website\Website\bin\Newtonsoft.Json.dll
 D:\Downloads\sp2MaoUyenTram\Website\Website\bin\Owin.dll
 D:\Downloads\sp2MaoUyenTram\Website\Website\bin\System.Net.Http.Formatting.dll
@@ -79,6 +75,7 @@ D:\Downloads\sp2MaoUyenTram\Website\Website\bin\System.Web.WebPages.dll
 D:\Downloads\sp2MaoUyenTram\Website\Website\bin\System.Web.WebPages.Razor.dll
 D:\Downloads\sp2MaoUyenTram\Website\Website\bin\WebGrease.dll
 D:\Downloads\sp2MaoUyenTram\Website\Website\bin\Antlr3.Runtime.pdb
+D:\Downloads\sp2MaoUyenTram\Website\Website\bin\EntityFramework.xml
 D:\Downloads\sp2MaoUyenTram\Website\Website\bin\EntityFramework.SqlServer.xml
 D:\Downloads\sp2MaoUyenTram\Website\Website\bin\Google.Protobuf.xml
 D:\Downloads\sp2MaoUyenTram\Website\Website\bin\Microsoft.AspNet.Identity.Core.xml
@@ -89,7 +86,9 @@ D:\Downloads\sp2MaoUyenTram\Website\Website\bin\Microsoft.Owin.Host.SystemWeb.xm
 D:\Downloads\sp2MaoUyenTram\Website\Website\bin\Microsoft.Owin.Security.xml
 D:\Downloads\sp2MaoUyenTram\Website\Website\bin\Microsoft.Owin.Security.Cookies.xml
 D:\Downloads\sp2MaoUyenTram\Website\Website\bin\Microsoft.Owin.Security.OAuth.xml
+D:\Downloads\sp2MaoUyenTram\Website\Website\bin\MySql.Data.xml
 D:\Downloads\sp2MaoUyenTram\Website\Website\bin\Newtonsoft.Json.xml
+D:\Downloads\sp2MaoUyenTram\Website\Website\bin\System.Net.Http.Formatting.xml
 D:\Downloads\sp2MaoUyenTram\Website\Website\bin\System.Web.Helpers.xml
 D:\Downloads\sp2MaoUyenTram\Website\Website\bin\System.Web.Http.xml
 D:\Downloads\sp2MaoUyenTram\Website\Website\bin\System.Web.Http.WebHost.xml
@@ -97,12 +96,13 @@ D:\Downloads\sp2MaoUyenTram\Website\Website\bin\System.Web.Mvc.xml
 D:\Downloads\sp2MaoUyenTram\Website\Website\bin\System.Web.Optimization.xml
 D:\Downloads\sp2MaoUyenTram\Website\Website\bin\System.Web.Razor.xml
 D:\Downloads\sp2MaoUyenTram\Website\Website\bin\System.Web.WebPages.xml
+D:\Downloads\sp2MaoUyenTram\Website\Website\bin\System.Web.WebPages.Deployment.xml
 D:\Downloads\sp2MaoUyenTram\Website\Website\bin\System.Web.WebPages.Razor.xml
+D:\Downloads\sp2MaoUyenTram\Website\Website\obj\Debug\Website.csprojAssemblyReference.cache
+D:\Downloads\sp2MaoUyenTram\Website\Website\obj\Debug\Website.Migrations.InitialCreate.resources
+D:\Downloads\sp2MaoUyenTram\Website\Website\obj\Debug\Website.Migrations.init.resources
+D:\Downloads\sp2MaoUyenTram\Website\Website\obj\Debug\Website.csproj.GenerateResource.cache
 D:\Downloads\sp2MaoUyenTram\Website\Website\obj\Debug\Website.csproj.CoreCompileInputs.cache
 D:\Downloads\sp2MaoUyenTram\Website\Website\obj\Debug\Website.csproj.CopyComplete
 D:\Downloads\sp2MaoUyenTram\Website\Website\obj\Debug\Website.dll
 D:\Downloads\sp2MaoUyenTram\Website\Website\obj\Debug\Website.pdb
-D:\Downloads\sp2MaoUyenTram\Website\Website\obj\Debug\Website.csprojAssemblyReference.cache
-D:\Downloads\sp2MaoUyenTram\Website\Website\obj\Debug\Website.Migrations.InitialCreate.resources
-D:\Downloads\sp2MaoUyenTram\Website\Website\obj\Debug\Website.csproj.GenerateResource.cache
-D:\Downloads\sp2MaoUyenTram\Website\Website\obj\Debug\Website.Migrations.init.resources
