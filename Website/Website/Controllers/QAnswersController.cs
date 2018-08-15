@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -15,127 +16,29 @@ namespace Website.Controllers
     {
         private WebsiteContext db = new WebsiteContext();
 
-        // GET: QAnswers
         [NoDirectAccess]
-        public ActionResult Index()
+        public ActionResult XYChartView(int? id)
         {
-            var qAnswers = db.QAnswers.Include(q => q.Answers).Include(q => q.Questions).Include(q => q.Users);
-            return View(qAnswers.ToList());
-        }
-
-        // GET: QAnswers/Details/5
-        [NoDirectAccess]
-        public ActionResult Details(int? id)
-        {
+            var chartData = (from aid in db.Answers
+                             join qaid in db.QAnswers on aid.AId equals qaid.AId
+                             where qaid.QId == id
+                             group aid by aid.Answer into ai
+                             select new Data { Name = ai.Key, Count = ai.Count() }).ToList();
+            ViewBag.DataPoints = ToData.ToDataSet(chartData);
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            QAnswers qAnswers = db.QAnswers.Find(id);
-            if (qAnswers == null)
+            Questions questions = db.Questions.Find(id);
+            if (questions == null)
             {
                 return HttpNotFound();
             }
-            return View(qAnswers);
+            var temp = questions.Method;
+            questions.Method = temp.First().ToString().ToUpper() + temp.Substring(1, temp.Length-6);
+            return View(questions);
         }
 
-        // GET: QAnswers/Create
-        [NoDirectAccess]
-        public ActionResult Create()
-        {
-            ViewBag.AId = new SelectList(db.Answers, "AId", "Answer");
-            ViewBag.QId = new SelectList(db.Questions, "QId", "Question");
-            ViewBag.UId = new SelectList(db.Users, "UId", "User");
-            return View();
-        }
-
-        // POST: QAnswers/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [NoDirectAccess]
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "QId,AId,UId")] QAnswers qAnswers)
-        {
-            if (ModelState.IsValid)
-            {
-                db.QAnswers.Add(qAnswers);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.AId = new SelectList(db.Answers, "AId", "Answer", qAnswers.AId);
-            ViewBag.QId = new SelectList(db.Questions, "QId", "Question", qAnswers.QId);
-            ViewBag.UId = new SelectList(db.Users, "UId", "User", qAnswers.UId);
-            return View(qAnswers);
-        }
-
-        // GET: QAnswers/Edit/5
-        [NoDirectAccess]
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            QAnswers qAnswers = db.QAnswers.Find(id);
-            if (qAnswers == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.AId = new SelectList(db.Answers, "AId", "Answer", qAnswers.AId);
-            ViewBag.QId = new SelectList(db.Questions, "QId", "Question", qAnswers.QId);
-            ViewBag.UId = new SelectList(db.Users, "UId", "User", qAnswers.UId);
-            return View(qAnswers);
-        }
-
-        // POST: QAnswers/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [NoDirectAccess]
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "QId,AId,UId")] QAnswers qAnswers)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(qAnswers).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.AId = new SelectList(db.Answers, "AId", "Answer", qAnswers.AId);
-            ViewBag.QId = new SelectList(db.Questions, "QId", "Question", qAnswers.QId);
-            ViewBag.UId = new SelectList(db.Users, "UId", "User", qAnswers.UId);
-            return View(qAnswers);
-        }
-
-        // GET: QAnswers/Delete/5
-        [NoDirectAccess]
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            QAnswers qAnswers = db.QAnswers.Find(id);
-            if (qAnswers == null)
-            {
-                return HttpNotFound();
-            }
-            return View(qAnswers);
-        }
-
-        // POST: QAnswers/Delete/5
-        [NoDirectAccess]
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            QAnswers qAnswers = db.QAnswers.Find(id);
-            db.QAnswers.Remove(qAnswers);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
 
         protected override void Dispose(bool disposing)
         {
@@ -145,5 +48,7 @@ namespace Website.Controllers
             }
             base.Dispose(disposing);
         }
+
+        
     }
 }

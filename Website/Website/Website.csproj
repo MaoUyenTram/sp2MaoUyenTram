@@ -100,6 +100,7 @@
     <Reference Include="System.Net.Http.Formatting, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.6\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -224,7 +225,6 @@
     <Content Include="Views\Answers\Delete.cshtml" />
     <Content Include="Views\Answers\Details.cshtml" />
     <Content Include="Views\Answers\Edit.cshtml" />
-    <Content Include="Views\QAnswers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -246,8 +246,10 @@
       <DependentUpon>201808130200402_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ToData.cs" />
     <Compile Include="Models\Answers.cs" />
     <Compile Include="Models\BigView.cs" />
+    <Compile Include="Models\Data.cs" />
     <Compile Include="Models\QAnswers.cs" />
     <Compile Include="Models\Questions.cs" />
     <Compile Include="Models\Users.cs" />
@@ -264,6 +266,7 @@
     <Content Include="Views\Shared\LoginPartial.cshtml" />
     <Content Include="Views\Answers\Index.cshtml" />
     <Content Include="Views\Answers\Create.cshtml" />
+    <Content Include="Views\QAnswers\XYChartView.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

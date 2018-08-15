@@ -1,0 +1,20 @@
+﻿@model Website.Models.Questions
+@using System.Data;
+
+@{
+    ViewBag.Title = "XYChartView";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+    //src = https://docs.microsoft.com/en-us/aspnet/web-pages/overview/data/7-displaying-data-in-a-chart
+}
+
+<h2>XYChartView</h2>
+@{
+    var dataView = new DataView(ViewBag.Datapoints.Tables[0]);
+
+    var myChart = new Chart(width: 1200, height: 800)
+        .AddTitle(@Model.Question)
+        .AddSeries("Default", chartType: @Model.Method,
+            xValue: dataView, xField: "Name",
+            yValues: dataView, yFields: "Count")
+        .Write();
+}

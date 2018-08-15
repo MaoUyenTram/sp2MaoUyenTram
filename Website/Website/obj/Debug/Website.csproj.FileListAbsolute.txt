@@ -1,3 +1,7 @@
+D:\Downloads\sp2MaoUyenTram\Website\Website\obj\Debug\Website.Migrations.InitialCreate.resources
+D:\Downloads\sp2MaoUyenTram\Website\Website\obj\Debug\Website.Migrations.init.resources
+D:\Downloads\sp2MaoUyenTram\Website\Website\obj\Debug\Website.csproj.GenerateResource.cache
+D:\Downloads\sp2MaoUyenTram\Website\Website\obj\Debug\Website.csproj.CoreCompileInputs.cache
 D:\Downloads\sp2MaoUyenTram\Website\Website\bin\Website.dll.config
 D:\Downloads\sp2MaoUyenTram\Website\Website\bin\Website.dll
 D:\Downloads\sp2MaoUyenTram\Website\Website\bin\Website.pdb
@@ -98,11 +102,6 @@ D:\Downloads\sp2MaoUyenTram\Website\Website\bin\System.Web.Razor.xml
 D:\Downloads\sp2MaoUyenTram\Website\Website\bin\System.Web.WebPages.xml
 D:\Downloads\sp2MaoUyenTram\Website\Website\bin\System.Web.WebPages.Deployment.xml
 D:\Downloads\sp2MaoUyenTram\Website\Website\bin\System.Web.WebPages.Razor.xml
-D:\Downloads\sp2MaoUyenTram\Website\Website\obj\Debug\Website.csprojAssemblyReference.cache
-D:\Downloads\sp2MaoUyenTram\Website\Website\obj\Debug\Website.Migrations.InitialCreate.resources
-D:\Downloads\sp2MaoUyenTram\Website\Website\obj\Debug\Website.Migrations.init.resources
-D:\Downloads\sp2MaoUyenTram\Website\Website\obj\Debug\Website.csproj.GenerateResource.cache
-D:\Downloads\sp2MaoUyenTram\Website\Website\obj\Debug\Website.csproj.CoreCompileInputs.cache
 D:\Downloads\sp2MaoUyenTram\Website\Website\obj\Debug\Website.csproj.CopyComplete
 D:\Downloads\sp2MaoUyenTram\Website\Website\obj\Debug\Website.dll
 D:\Downloads\sp2MaoUyenTram\Website\Website\obj\Debug\Website.pdb

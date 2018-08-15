@@ -30,9 +30,9 @@
             @Html.DisplayFor(modelItem => item.Method)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.QId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.QId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.QId })
+            @Html.ActionLink("Edit", "Edit", new { id = item.QId }) |
+            @Html.ActionLink("Generate Chart","XYChartView","QAnswers", new { id = item.QId }, new { area = "" }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.QId })
         </td>
     </tr>
 }
