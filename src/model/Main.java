@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import database.BaseDAO;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -129,6 +130,7 @@ public class Main extends Application  implements java.io.Serializable{
 	}
 	
 	public static void main(String[] args) {
+		BaseDAO b = new BaseDAO();
 		launch(args);
 	}
 

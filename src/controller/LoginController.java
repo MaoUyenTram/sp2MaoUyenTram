@@ -1,5 +1,7 @@
 package controller;
 
+import java.io.IOException;
+
 import database.LoginDAO;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -21,27 +23,31 @@ public class LoginController {
 
 	@FXML
 	void goHome(ActionEvent event) throws InterruptedException{
-
-		try {
-			user = new Users();
-			user.setEmail(tf_user.getText());
-			user.setPsw(pf_password.getText());
-			if (LoginDAO.loginUser(user)) {
-				Main.mainview();
-
-			} else {
-				alert("incorrect email/password. ", "Please check your email/password", AlertType.WARNING);
+		Platform.runLater(new Runnable(){
+			@Override
+			public void run() {
+				user = new Users();
+				user.setEmail(tf_user.getText());
+				user.setPsw(pf_password.getText());
+				if (LoginDAO.loginUser(user)) {
+						try {
+							Main.mainview();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}		
+				} else {
+						try {
+							alert("incorrect email/password. ", "Please check your email/password", AlertType.WARNING);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+				}
 			}
-		} catch (NullPointerException e) {
-			user.setEmail("");
-			user.setPsw("");
-		} catch (Exception e) {
-			alert("FATAL ERROR", "Unknown error, please contact your system administrator and report the bug.",
-					AlertType.WARNING);
-			
-			e.printStackTrace();
-		}
+		});		
 	}
+	
 
 	public static void alert(String title, String message, AlertType al) throws InterruptedException {
 		Alert alert = new Alert(al);
@@ -70,4 +76,6 @@ public class LoginController {
 		    newThread.start();
 
 	}
+
+
 }

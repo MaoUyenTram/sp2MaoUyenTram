@@ -17,7 +17,6 @@ namespace Website.Controllers
         private WebsiteContext db = new WebsiteContext();
 
         // GET: Questions
-        [NoDirectAccess]
         public ActionResult Index()
         {
 
